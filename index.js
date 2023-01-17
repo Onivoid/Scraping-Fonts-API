@@ -1,5 +1,6 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -10,8 +11,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/scrap', async (req, res) => {
-    const url = req.headers.url;
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.post('/scrap', async (req, res) => {
+    const url = req.body.url;
     const browser = await puppeteer.launch({
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
