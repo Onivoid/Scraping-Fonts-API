@@ -3,12 +3,18 @@ const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
 const http = require('http');
 const https = require('https');
-const le = require('letsencrypt');
+const fs = require('fs');
 
 const app = express();
 
 http.createServer(app).listen(80);
-https.createServer({}, app).listen(443);
+
+const options = {
+  key: fs.readFileSync('./cert/fontscrap.skullyfox-tv.fr.key'),
+  cert: fs.readFileSync('./cert/fontscrap.skullyfox-tv.fr.crt')
+};
+
+https.createServer(options, app).listen(443);
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
