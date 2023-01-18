@@ -44,6 +44,6 @@ app.post('/scrap', async (req, res) => {
     await browser.close();
   });
 
-app.listen(3000, () => {
-  console.log('Scraper API listening on port 3000!');
+app.listen(443, () => {
+  console.log('Scraper API listening on port 443!');
 });
