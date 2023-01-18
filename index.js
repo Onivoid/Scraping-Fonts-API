@@ -10,8 +10,8 @@ const app = express();
 http.createServer(app).listen(80);
 
 const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/fontscrap.skullyfox-tv.fr/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/fontscrap.skullyfox-tv.fr/fullchain.pem')
+  key: fs.readFileSync('/etc/letsencrypt/live/fontscrapapi.skullyfox-tv.fr/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/fontscrapapi.skullyfox-tv.fr/fullchain.pem')
 };
 
 https.createServer(options, app).listen(443);
