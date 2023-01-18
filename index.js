@@ -1,8 +1,14 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const bodyParser = require('body-parser');
+const http = require('http');
+const https = require('https');
+const le = require('letsencrypt');
 
 const app = express();
+
+http.createServer(app).listen(80);
+https.createServer({}, app).listen(443);
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -43,7 +49,3 @@ app.post('/scrap', async (req, res) => {
     res.send(cleanJson);
     await browser.close();
   });
-
-app.listen(443, () => {
-  console.log('Scraper API listening on port 443!');
-});
